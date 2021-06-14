@@ -1,12 +1,20 @@
-const puppeteer = require('puppeteer-extra');
-const pluginStealth = require("puppeteer-extra-plugin-stealth");
-require('dotenv').config()
+// puppeteer-extra is a drop-in replacement for puppeteer,
+// it augments the installed puppeteer with plugin functionality
+const puppeteer = require('puppeteer-extra')
 
-puppeteer.use(pluginStealth())
+// add stealth plugin and use defaults (all evasion techniques)
+const stealthPlugin = require("puppeteer-extra-plugin-stealth")();
+["chrome.runtime", "navigator.languages"].forEach(a =>
+  stealthPlugin.enabledEvasions.delete(a)
+);
+puppeteer.use(stealthPlugin);
+
+require('dotenv').config();
 
 const url = 'https://www.nike.com/ru/launch/t/womens-dunk-low-purple-pulse';
 const email = process.env.EMAIL;
 const password = process.env.PASS;
+
 
 (async () => {
   const browser = await puppeteer.launch({
@@ -14,14 +22,18 @@ const password = process.env.PASS;
       '--start-maximized', // you can also use '--start-fullscreen'
       '--disable-web-security',
       '--disable-features=IsolateOrigins',
-      '--disable-site-isolation-trials'
     ],
     ignoreHTTPSErrors: true,
     devtools: true,
     headless: false
   });
+
   const page = await browser.newPage();
   await page.setViewport({width: 1366, height: 768});
+
+  await page.evaluateOnNewDocument(() => {
+    delete navigator.__proto__.webdriver;
+  });
 
   await page.goto(url);
   // Wait for page to finish loading (do not use await!)
