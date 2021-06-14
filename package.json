@@ -1,0 +1,44 @@
+{
+  "name": "sunset-snkrs",
+  "version": "1.0.0",
+  "description": "sneakerbot",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js",
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yakunintest/sunset-snkrs.git"
+  },
+  "keywords": [
+    "snkrs",
+    "sneaker",
+    "bot"
+  ],
+  "author": "Yakunin Arkadiy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yakunintest/sunset-snkrs/issues"
+  },
+  "homepage": "https://github.com/yakunintest/sunset-snkrs#readme",
+  "dependencies": {
+    "dotenv-flow": "^3.2.0",
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "express": "^4.17.1",
+    "express-validation": "^3.0.8",
+    "joi": "^17.4.0",
+    "knex": "^0.95.6",
+    "nodemailer": "^6.6.1",
+    "puppeteer": "^10.0.0",
+    "puppeteer-cluster": "^0.22.0",
+    "puppeteer-extra": "^3.1.18",
+    "puppeteer-extra-plugin-stealth": "^2.7.8",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "winston": "^3.3.3"
+  }
+}
